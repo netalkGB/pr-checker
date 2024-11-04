@@ -50,6 +50,7 @@ async function getAllOpenPRs() {
       console.log('PR Number:', result.pullRequest.number);
       console.log('Title:', result.pullRequest.title);
       console.log('Author:', result.pullRequest.user.login);
+      console.log('URL:', result.pullRequest.html_url);
       
       console.log('\nChanged Files:');
       result.changedFiles.forEach(file => {
