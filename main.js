@@ -45,20 +45,20 @@ async function getAllOpenPRs() {
   try {
     const results = await fetchOpenPullRequests(owner, repo);
     
-    results.forEach(result => {
-      console.log('====================');
-      console.log('PR Number:', result.pullRequest.number);
-      console.log('Title:', result.pullRequest.title);
-      console.log('Author:', result.pullRequest.user.login);
-      console.log('URL:', result.pullRequest.html_url);
+    for (const result of results) {
+      console.log('====================')
+      console.log('PR Number:', result.pullRequest.number)
+      console.log('Title:', result.pullRequest.title)
+      console.log('Author:', result.pullRequest.user.login)
+      console.log('URL:', result.pullRequest.html_url)
       
-      console.log('\nChanged Files:');
-      result.changedFiles.forEach(file => {
-        console.log(`- ${file.filename} (${file.status})`);
-        console.log(`  Additions: ${file.additions}, Deletions: ${file.deletions}`);
-      });
-      console.log('====================\n');
-    });
+      console.log('\nChanged Files:')
+      for (const file of result.changedFiles) {
+        console.log(`- ${file.filename} (${file.status})`)
+        console.log(`  Additions: ${file.additions}, Deletions: ${file.deletions}`)
+      }
+      console.log('====================\n')
+    }
   } catch (error) {
     console.error('An error occurred:', error);
   }
